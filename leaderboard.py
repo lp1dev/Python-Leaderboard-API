@@ -13,7 +13,7 @@ if __name__ == "__main__":
         with open(leaderboard_file) as f:
             entries = parse_entries(f.readlines())
         if (len(entries)):
-            entries = sorted(entries, key=lambda entry: int(entry[2]))
+            entries = sorted(entries, key=lambda entry: int(entry[1]))
         return json.dumps(entries)
     
     def parse_entries(raw_lines):
@@ -32,7 +32,7 @@ if __name__ == "__main__":
             output.append({
                 "nickname": entry[0],
                 "score": entry[1],
-                "time": entry[2]
+                "time": entry[2].replace('\n', '')
             })
             
         return json.dumps(output)
